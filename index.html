@@ -20,18 +20,72 @@
         
         <section v-if="step == 1">
             <h3>Step 1</h3>
-            
-            <input v-model="form.name" type="text" name="Name" placeholder="Name" class="form-control form-control-lg">
+
+            <input v-model="form.firstName" type="text" name="firstName" placeholder="FirstName" class="form-control form-control-sm">
+            <br>
+            <input v-model="form.lastName" type="text" name="lastName" placeholder="LastName" class="form-control form-control-sm">
+            <br>
+            <input v-model="form.email" type="email" name="email" placeholder="email" class="form-control form-control-sm">
+            <br>
+            <input v-model="form.phone" type="tel" name="email" placeholder="Phone" class="form-control form-control-sm">
+        
         </section>
         
         <section v-if="step == 2">
             <h3>Step 2</h3>
             
-            <input v-model="form.email"type="email" name="email" placeholder="email" class="form-control form-control-lg">
-            
-            
-            <input v-model="form.phone" type="tel" name="email" placeholder="Phone" class="form-control form-control-lg">
-            
+
+                
+                    <div class="custom-control custom-radio">
+                        <input v-model="form.genderPicked" type="radio" name="gender" id="radioMan" class="custom-control-input" value="Man">
+                        <label class="custom-control-label" for="radioMan">Man</label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio">
+                        <input v-model="form.genderPicked" type="radio" name="gender" id="radioWoman" class="custom-control-input" value="Woman">
+                        <label class="custom-control-label" for="radioWoman">Woman</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                        <input v-model="form.genderPicked" type="radio" name="gender" id="radioOther" class="custom-control-input" value="Other">
+                        <label class="custom-control-label" for="radioOther">Other</label>
+                    </div>
+                    <br>
+
+                    <span>Country :</span>
+                    <select class="custom-select custom-select-sm"v-model ="form.country" id="Country">
+
+                        <option  value="France">France</option>
+                        <option  value="Spain">Spain</option>
+                        <option  value="Germany">Germany</option>
+                        <option  value="England">England</option>
+
+                    </select>
+
+                    <br>
+                    <br>
+
+                    <div class="custom-control custom-checkbox">
+
+                        <input v-model="form.like" type="checkbox" value="Strawberrie" id="checkStrawberrie" class="custom-control-input">
+                        <label  for="checkStrawberrie" class="custom-control-label">Strawberrie</label>
+                    
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                        
+                        <input v-model="form.like" type="checkbox" value="Banana" id="checkBanana" class="custom-control-input">
+                      
+                        <label  for="checkBanana" class="custom-control-label">Banana</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+
+                        <input v-model="form.like" type="checkbox" value="Blueberrie" id="checkBlueberrie" class="custom-control-input">
+                        <label  for="checkBlueberrie" class="custom-control-label">Blueberrie</label>
+                    
+                    </div>
+
         </section> 
         
         
@@ -42,17 +96,31 @@
             <textarea  v-model="form.message" name="message" placeholder="Message" class="form-control form-control-lg"></textarea>        
             
         </section>
-        
-        <button v-if="step != 1" @click.prevent="prevStep" >Previous step</button>
-        <button v-if="step !=stepList" @click.prevent="nextStep" >Next step</button>
-        <button v-if="step == 3" @click.prevent="sendForm" >Send</button>
+
+        <section v-if="step == 4">
+            
+            <h3>anwser</h3>
+
+            <p>your firstname is : {{ form.firstName }}</p>
+            <p>your lastname is : {{ form.lastName }}</p>
+            <p>your email is : {{ form.email }}</p>
+            <p>your phone number is : {{ form.phone }}</p>
+            <p>your gender is : {{ form.genderPicked }}</p>
+            <p>your location is : {{ form.country }}</p>
+            <p>you like : {{ form.like }}</p>
+            <p>you message is : {{ form.message }}</p>
+               
+
+
+        </section>
+
+        <p></p>
+        <button v-if="step != 1" @click.prevent="prevStep" class="btn btn-outline-primary">Previous step</button>
+        <button v-if="step != 3 &&  step != 4" @click.prevent="nextStep" class="btn btn-outline-primary">Next step</button>
+        <button v-if="step == 3" @click.prevent="sendForm" class="btn btn-outline-primary">Send</button>
         
         <span v-for="e in errors">{{ e }}</span>
-        <p></p>
-        <p>Your name is {{ form.name }}</p>
-        <p>your email is {{ form.email }}</p>
-        <p>your phone numbers is {{ form.phone }}</p>
-        <p>your message is {{ form.message }}</p>
+        
     </form>
 
     

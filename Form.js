@@ -6,15 +6,19 @@ var vue =new Vue({
 
             form:{
 
-                name:null,
+                firstName:null,
+                lastName:null,
                 email:null,
                 phone:null,
-                message:null
+                message:null,
+                genderPicked: null,
+                country :null,
+                like:[]
 
 
             },
 
-        stepList: 3,
+        stepList: 4,
         step: 1,
         errors:[],
     },
@@ -25,23 +29,37 @@ var vue =new Vue({
 
             if(this.step== 1){
 
-                if(!this.form.name){
+                if(!this.form.firstName){
                     return false,
-                    this.errors ="please fill out your name"
+                    this.errors ="Please fill out your firstname"
+                } 
+                if(!this.form.lastName){
+                    return false,
+                    this.errors ="Please fill out your lastname"
+                }
+                if(!this.form.email){
+                    return false,
+                    this.errors ="Please fill out your email"
+                }
+                if(!this.form.phone){
+                    return false,
+                    this.errors ="Please fill out your phone number"
                 }
                 this.errors = null
                 
             }
-            if(this.step== 2){
 
-                if(!this.form.email){
+            if(this.step== 2){
+                if(!this.form.genderPicked){
                     return false,
-                    this.errors ="please fill out your email"
+                    this.errors ="Please choose gender"
                 }
-                if(!this.form.phone){
+                if(!this.form.country){
                     return false,
-                    this.errors ="please fill out your phone number"
+                    this.errors ="Please choose country"
                 }
+                
+                
                 this.errors = null
             }
             
@@ -57,11 +75,11 @@ var vue =new Vue({
             if(this.step== 3){
                 if(!this.form.message){
                     return false,
-                    this.errors ="please fill out your message"
+                    this.errors ="Please fill out your message"
                 }
                 this.errors = null
             }
-            alert("form sended")
+            this.step++
         }
     },
 })
